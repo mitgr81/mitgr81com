@@ -31,4 +31,6 @@ nosetests.xml
 
 mocksie.py
 
+#BDD Stuff
+ghostdriver.log
 

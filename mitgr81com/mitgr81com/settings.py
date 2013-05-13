@@ -122,7 +122,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-print(TEMPLATE_DIRS)
 
 THIRD_PARTY_APPS = (
     'suit',
@@ -131,7 +130,7 @@ THIRD_PARTY_APPS = (
 )
 
 MY_APPS = (
-    'password_passer',
+    'unclear',
 )
 
 DJANGO_APPS = (

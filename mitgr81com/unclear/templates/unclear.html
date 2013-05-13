@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block page_title %}Passwords{% endblock %}
+
+{% block page_content %}
+{% if form %}
+    <form action="/unclear/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="Pass It" value="Pass It" />
+    </form>
+{% else %}
+    <p>Thank you for not sending that password in the clear!</p>
+    <p>You can pass this password by telling the other party to enter your passphrase at:</p>
+    <span id="unclear-uri">hello poll {{ pass_id }}</span>
+{% endif %}
+{% endblock %}
