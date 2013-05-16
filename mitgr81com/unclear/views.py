@@ -1,6 +1,10 @@
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 
 from .models import PassphraseHash
+
+
+class UnclearList(ListView):
+    model = PassphraseHash
 
 
 class UnclearCreate(CreateView):
