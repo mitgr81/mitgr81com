@@ -6,6 +6,6 @@ from unclear import views
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<pass_id>.+)/$', views.get, name='get'),
+    url(r'^$', views.UnclearCreate.as_view(), name='create'),
+    url(r'^(?P<slug>.+)/$', views.UnclearDetail.as_view(), name='unclear_display'),
 )

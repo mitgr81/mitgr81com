@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block page_title %}Passwords{% endblock %}
+
+{% block page_content %}
+    <p>Thank you for not sending that password in the clear!</p>
+    <p>You can pass this password by telling the other party to enter your passphrase at:</p>
+    <span id="unclear-uri">hello poll {{ object.slug }}</span>
+{% endblock %}
