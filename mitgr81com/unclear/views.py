@@ -11,6 +11,5 @@ class UnclearDetail(DetailView):
     model = PassphraseHash
 
 
-class UnclearThanks(DetailView):
+class UnclearThanks(UnclearDetail):
     template_name = 'unclear/passphrasehash_thanks.html'
-    model = PassphraseHash
