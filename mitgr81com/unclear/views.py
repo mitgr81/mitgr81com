@@ -11,7 +11,7 @@ class UnclearCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.slug = ''.join([random.choice(string.ascii_letters + string.digits + '-_') for ch in range(8)])
+        self.object.slug = u''.join([random.choice(string.ascii_letters + string.digits + '-_') for ch in range(8)])
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 

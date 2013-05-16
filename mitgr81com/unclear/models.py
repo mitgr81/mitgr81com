@@ -13,3 +13,9 @@ class PassphraseHash(models.Model):
 
     def get_absolute_url(self):
         return reverse('unclear_thanks', args=[self.slug])
+
+    class Meta:
+        verbose_name_plural = "Passphrase Hashes"
+
+    def __unicode__(self):
+        return self.slug
