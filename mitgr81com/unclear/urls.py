@@ -8,4 +8,5 @@ from unclear import views
 urlpatterns = patterns('',
     url(r'^$', views.UnclearCreate.as_view(), name='create'),
     url(r'^(?P<slug>.+)/$', views.UnclearDetail.as_view(), name='unclear_display'),
+    url(r'^created/(?P<slug>.+)$', views.UnclearThanks.as_view(), name='unclear_thanks'),
 )

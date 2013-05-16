@@ -12,4 +12,4 @@ class PassphraseHash(models.Model):
     access_count = models.IntegerField(default=0, editable=False)
 
     def get_absolute_url(self):
-        return reverse('unclear_display', args=[self.slug])
+        return reverse('unclear_thanks', args=[self.slug])
