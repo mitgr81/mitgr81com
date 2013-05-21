@@ -20,6 +20,10 @@ class PassphraseHash(models.Model):
     def __unicode__(self):
         return self.slug
 
+    @property
+    def remaining_unlocks(self):
+        return self.max_access - self.access_count
+
     def get_absolute_url(self):
         return reverse('unclear_thanks', args=[self.slug])
 

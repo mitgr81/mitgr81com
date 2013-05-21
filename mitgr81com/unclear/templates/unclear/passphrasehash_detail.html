@@ -2,5 +2,16 @@
 {% block page_title %}Passwords{% endblock %}
 
 {% block page_content %}
-    <span id="unclear-uri">hello poll {{ object.slug }}</span>
+    <span id="unclear-uri">This passphrase may be retrieved {{ object.remaining_unlocks }} more time{{ object.remaining_unlocks | pluralize}}.</span><br/>
+    <input type="password" name="unlock_phrase" placeholder="Unlock phrase"/><br/>
+    <input type="password" name="passphrase" value="{{ object.passphrase }}" readonly/><button id="copy-button">Copy</button>
+
+{% endblock %}
+
+{% block body_bottom %}
+<script type="text/javascript">
+document.getElementById('copy-button').addEventListener('click', function(event) {
+    window.prompt ("Copy to clipboard: Ctrl+C, Enter", document.getElementById('passphrase').value);
+});
+</script>
 {% endblock %}

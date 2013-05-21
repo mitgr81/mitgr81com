@@ -4,5 +4,5 @@
 {% block page_content %}
     <p>Thank you for not sending that password in the clear!</p>
     <p>You can pass this password by telling the other party to enter your passphrase at:</p>
-    <span id="unclear-uri">thanks poll {{ object.slug }}</span>
+    <a id="unclear-uri" href="{% url 'unclear_display' object.slug %}">{{ full_uri }}</span>
 {% endblock %}

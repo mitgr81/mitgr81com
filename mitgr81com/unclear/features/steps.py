@@ -1,7 +1,7 @@
 from lettuce import *
 from lettuce.django import django_url
 from splinter.browser import Browser
-from nose.tools import assert_equals, assert_true
+from nose.tools import assert_equals, assert_true, assert_not_equals
 
 urls = {'unclear': django_url('/unclear/')}
 
@@ -21,9 +21,24 @@ def access_url(step, page_name):
     world.browser.visit(urls[page_name])
 
 
+@step(u'I browse to the last unclear page')
+def access_last_url(step):
+    world.browser.visit(world.last_unclear_uri)
+
+
 @step(u'I enter "([^"]*)" in the "([^"]*)" field')
 def type_into_field(step, text, field_name):
     world.browser.fill(field_name, text)
+
+
+@step(u'"([^"]*)" is in the "([^"]*)" field')
+def verify_field_contents(step, text, field_name):
+    assert_equals(text, world.browser.find_by_name(field_name).first.value)
+
+
+@step(u'"([^"]*)" is not in the "([^"]*)" field')
+def verify_field_contents_do_not_match(step, text, field_name):
+    assert_not_equals(text, world.browser.find_by_name(field_name).first.value)
 
 
 @step(u'I click the "([^"]*)" button')
@@ -39,5 +54,3 @@ def verify_text_present(step, text):
 @step(u'I capture the unclear URI')
 def capture_unclear_uri(step):
     world.last_unclear_uri = world.browser.find_by_id('unclear-uri').first.text
-    print("Captured unclear_uri: {}".format(world.last_unclear_uri))
-    print("Captured unclear_uri: {}".format(world.last_unclear_uri))
