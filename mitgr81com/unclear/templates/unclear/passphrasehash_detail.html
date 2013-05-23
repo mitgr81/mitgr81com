@@ -23,6 +23,8 @@ phrasebox.setAttribute('data-rawpassphrase', phrasebox.value);
 document.getElementsByName('unlock_phrase')[0].addEventListener('keyup', function(event) {
     var decryptedString = CryptoJS.AES.decrypt(phrasebox.getAttribute('data-rawpassphrase'), document.getElementsByName('unlock_phrase')[0].value).toString(CryptoJS.enc.Utf8);
     if (decryptedString) {
+        // update server to decrement count
+        // create new xmlhttprequest (see MDN, like http://microajax.googlecode.com/svn/trunk/microajax.js)
         phrasebox.value = decryptedString;
     } else {
         phrasebox.value = '';

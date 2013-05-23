@@ -24,6 +24,7 @@ if (form.attachEvent) {
 }
 
 function processForm(event) {
+  // https://code.google.com/p/crypto-js/#Custom_Key_and_IV  Consider passing in an IV, and storing that
     document.getElementsByName('passphrase')[0].value = CryptoJS.AES.encrypt(document.getElementsByName('passphrase')[0].value, document.getElementsByName('unlock_phrase')[0].value);
 }
 </script>
