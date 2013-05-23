@@ -16,6 +16,7 @@ class UnclearDetail(DetailView):
 
     # def get_context_data(self, **kwargs):
     #     context = super(UnclearDetail, self).get_context_data(**kwargs)
+    #     import pdb; pdb.set_trace()
     #     return context
 
 

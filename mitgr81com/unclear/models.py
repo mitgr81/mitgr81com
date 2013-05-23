@@ -1,3 +1,4 @@
+import binascii
 import random
 import string
 
@@ -14,7 +15,7 @@ class PassphraseHash(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     expire_at = models.DateTimeField(auto_now=True, editable=False)
     passphrase = models.CharField(max_length=255)
-    iv = models.CharField(max_length=16, editable=False)
+    iv = models.CharField(max_length=255, editable=False)
     slug = models.SlugField(max_length=255, blank=True, default='', editable=False)
     max_access = models.IntegerField(default=1)
     access_count = models.IntegerField(default=0, editable=False)
@@ -31,8 +32,7 @@ class PassphraseHash(models.Model):
 
     @property
     def decry_passphrase(self):
-        return self.passphrase
-        return qaes.decrypt(self.passphrase, self.iv)
+        return qaes.decrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, binascii.a2b_base64(self.iv))
 
     def get_absolute_url(self):
         return reverse('unclear_thanks', args=[self.slug])
@@ -40,8 +40,7 @@ class PassphraseHash(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is None:  # Doing an insert
             self.slug = u''.join([random.choice(string.ascii_letters + string.digits + '-_') for ch in range(8)])
-            self.iv = Random.new().read(AES.block_size)
-            # import pdb; pdb.set_trace()
-            self.passphrase = unicode(qaes.encrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, self.iv))
-            print self.passphrase
+            iv = Random.new().read(AES.block_size)
+            self.iv = binascii.b2a_base64(iv)
+            self.passphrase = qaes.encrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, iv)
         super(PassphraseHash, self).save(*args, **kwargs)
