@@ -42,6 +42,8 @@ class PassphraseHash(models.Model):
             self.slug = u''.join([random.choice(string.ascii_letters + string.digits + '-_') for ch in range(8)])
             self.iv = Random.new().read(AES.block_size)
             # import pdb; pdb.set_trace()
-            # self.passphrase = unicode(qaes.encrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, self.iv))
+            from django.db import connection
+            self.passphrase = unicode(qaes.encrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, self.iv))
+            print connection.queries
             print self.passphrase
         super(PassphraseHash, self).save(*args, **kwargs)
