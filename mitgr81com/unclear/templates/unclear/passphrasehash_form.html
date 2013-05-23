@@ -2,9 +2,29 @@
 {% block page_title %}Passwords{% endblock %}
 
 {% block page_content %}
-  <form action="/unclear/" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" name="Pass It" value="Pass It" />
+  <form action="/unclear/" method="post" id="unclear-form">
+    {% csrf_token %}
+    <p><label for="id_passphrase">Passphrase:</label> <input id="id_passphrase" maxlength="64" name="passphrase" type="password" placeholder="Passphrase" title="Passphrase to Pass" required/></p>
+    <p><label for="id_unlock_phrase">Unlock Phrase:</label><input id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase" title="Phrase you'll tell the other user" required/></p>
+    <p><label for="id_max_access">Max access:</label> <input id="id_max_access" name="max_access" type="number" min="1" value="1"  title="How many users you'll be passing this to" required/></p>
+    <input type="submit" name="Pass It" value="Pass It" />
   </form>
+{% endblock %}
+
+{% block body_bottom %}
+{% load staticfiles %}
+<script src="{% static "js/aes.js" %}"></script>
+<script type="text/javascript">
+
+var form = document.getElementById('unclear-form');
+if (form.attachEvent) {
+    form.attachEvent("submit", processForm);
+} else {
+    form.addEventListener("submit", processForm);
+}
+
+function processForm(event) {
+    document.getElementsByName('passphrase')[0].value = CryptoJS.AES.encrypt(document.getElementsByName('passphrase')[0].value, document.getElementsByName('unlock_phrase')[0].value);
+}
+</script>
 {% endblock %}

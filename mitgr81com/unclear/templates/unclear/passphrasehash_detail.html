@@ -3,15 +3,31 @@
 
 {% block page_content %}
     <span id="unclear-uri">This passphrase may be retrieved {{ object.remaining_unlocks }} more time{{ object.remaining_unlocks | pluralize}}.</span><br/>
-    <input type="password" name="unlock_phrase" placeholder="Unlock phrase"/><br/>
-    <input type="password" name="passphrase" value="{{ object.passphrase }}" readonly/><button id="copy-button">Copy</button>
+    <p><label for="id_unlock_phrase">Unlock Phrase:</label><input id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase"/></p>
+    <p><label for="id_passphrase">Passphrase:</label><input id="id_passphrase" type="password" name="passphrase" value="{{ object.decry_passphrase }}" readonly/><button id="copy-button">Copy</button></p>
 
 {% endblock %}
 
 {% block body_bottom %}
+{% load staticfiles %}
+<script src="{% static "js/aes.js" %}"></script>
 <script type="text/javascript">
+var phrasebox = document.getElementsByName('passphrase')[0];
+
 document.getElementById('copy-button').addEventListener('click', function(event) {
-    window.prompt ("Copy to clipboard: Ctrl+C, Enter", document.getElementsByName('passphrase')[0].value);
+    window.prompt ("Copy to clipboard: Ctrl+C, Enter", phrasebox.value);
 });
+
+phrasebox.setAttribute('data-rawpassphrase', phrasebox.value);
+
+document.getElementsByName('unlock_phrase')[0].addEventListener('keyup', function(event) {
+    var decryptedString = CryptoJS.AES.decrypt(phrasebox.getAttribute('data-rawpassphrase'), document.getElementsByName('unlock_phrase')[0].value).toString(CryptoJS.enc.Utf8);
+    if (decryptedString) {
+        phrasebox.value = decryptedString;
+    } else {
+        phrasebox.value = '';
+    }
+});
+
 </script>
 {% endblock %}
