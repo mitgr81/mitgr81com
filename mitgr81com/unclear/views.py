@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .models import PassphraseHash
 
@@ -10,14 +10,20 @@ class UnclearList(ListView):
 class UnclearCreate(CreateView):
     model = PassphraseHash
 
-
-class UnclearDetail(DetailView):
+class UnclearDetail(UpdateView):
     model = PassphraseHash
+    template_name = 'unclear/passphrasehash_detail.html'
 
     # def get_context_data(self, **kwargs):
     #     context = super(UnclearDetail, self).get_context_data(**kwargs)
     #     import pdb; pdb.set_trace()
     #     return context
+
+    def put(self, request, *args, **kwargs):
+        import pdb; pdb.set_trace()
+
+    def patch(self, *args, **kwargs):
+        import pdb; pdb.set_trace()
 
 
 class UnclearThanks(UnclearDetail):
