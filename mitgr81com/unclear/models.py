@@ -43,4 +43,7 @@ class PassphraseHash(models.Model):
             iv = Random.new().read(AES.block_size)
             self.iv = binascii.b2a_base64(iv)
             self.passphrase = qaes.encrypt(self.slug + settings.SECRET_KEY[:8], self.passphrase, iv)
+        if self.access_count >= self.max_access:
+            self.delete()
+            return
         super(PassphraseHash, self).save(*args, **kwargs)
