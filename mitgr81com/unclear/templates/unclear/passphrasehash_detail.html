@@ -24,7 +24,8 @@ document.getElementsByName('unlock_phrase')[0].addEventListener('keyup', functio
     var decryptedString = CryptoJS.AES.decrypt(phrasebox.getAttribute('data-rawpassphrase'), document.getElementsByName('unlock_phrase')[0].value).toString(CryptoJS.enc.Utf8);
     if (decryptedString) {
         // update server to decrement count
-        updateCount(window.location, '{"decrypted": "true"}', function(string, code){
+        // updateCount(window.location, 'decrypted', function(string, code){
+        updateCount(window.location, '{"decrypted": true}', function(string, code){
             if (code == 200) {
                 phrasebox.value = decryptedString;
             }

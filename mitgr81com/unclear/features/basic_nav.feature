@@ -31,3 +31,30 @@ Scenario: A passphrase, once stored, can be later retrieved - 3
         And "bob's your passphrase" is not in the "passphrase" field
     When I enter "but weave is your salvation" in the "unlock_phrase" field
     Then "bob's your passphrase" is in the "passphrase" field
+
+Scenario: A passphrase, once stored, can be retrieved only the requested amount - 4
+    Given I browse to the "unclear" page
+        And I enter "bob's your passphrase" in the "passphrase" field
+        And I enter "but weave is your salvation" in the "unlock_phrase" field
+        And I enter "3" in the "max_access" field
+        And I click the "Pass It" button
+        And I capture the unclear URI
+
+        And I browse to the last unclear page
+        And I see the text "This passphrase may be retrieved 3 more times."
+        And "bob's your passphrase" is not in the "passphrase" field
+        And I enter "but weave is your salvation" in the "unlock_phrase" field
+        And "bob's your passphrase" is in the "passphrase" field
+
+        And I browse to the last unclear page
+        And I see the text "This passphrase may be retrieved 2 more times."
+        And "bob's your passphrase" is not in the "passphrase" field
+        And I enter "but weave is your salvation" in the "unlock_phrase" field
+        And "bob's your passphrase" is in the "passphrase" field
+
+        And I browse to the last unclear page
+        And I see the text "This passphrase may be retrieved 1 more time."
+        And "bob's your passphrase" is not in the "passphrase" field
+        And I enter "but weave is your salvation" in the "unlock_phrase" field
+        And "bob's your passphrase" is in the "passphrase" field
+        And I fail to browse to the last unclear page

@@ -8,7 +8,7 @@ urls = {'unclear': django_url('/unclear/')}
 
 @before.all
 def set_browser():
-    world.browser = Browser('phantomjs')
+    world.browser = Browser('chrome')
 
 
 @after.all
@@ -24,6 +24,11 @@ def access_url(step, page_name):
 @step(u'I browse to the last unclear page')
 def access_last_url(step):
     world.browser.visit(world.last_unclear_uri)
+
+@step(u'I fail to browse to the last unclear page')
+def fail_to_access_last_url(step):
+    world.browser.visit(world.last_unclear_uri)
+    assert_not_equals(200, world.browser.status_code.code)
 
 
 @step(u'I enter "([^"]*)" in the "([^"]*)" field')

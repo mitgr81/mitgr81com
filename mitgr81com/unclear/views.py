@@ -1,3 +1,5 @@
+import json
+
 from django.views.generic import CreateView, ListView, DetailView
 from django.http import HttpResponse
 
@@ -17,7 +19,8 @@ class UnclearDetail(DetailView):
     http_method_names = ['get', 'patch']
 
     def patch(self, request, *args, **kwargs):
-        if 'decrypted' in request.body:  # should really json load this
+        body = json.loads(request.body)
+        if 'decrypted' in body and body['decrypted']:
             this_hash = PassphraseHash.objects.get(slug=kwargs['slug'])
             this_hash.access_count += 1
             this_hash.save()
