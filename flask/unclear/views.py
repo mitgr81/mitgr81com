@@ -16,7 +16,7 @@ class PassphraseView(MethodView):
         # request.values['unlock_phrase']
         # request.values['passphrase']
         # request.values['max_access']
-        return render_template('thanks.html', full_uri="eeaosu", thing={'stuff': 'aabbcc112233'})
+        return render_template('thanks.html', full_uri="eeaosu", passphrase={'id': 'aabbcc112233'})
 
     def patch(self, passphrase_id):
         return "kk"
