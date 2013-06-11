@@ -1,2 +1,2 @@
 activate:
-	workon mitgr81com
+	workon mitgr81com_flask
