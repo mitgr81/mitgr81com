@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block page_title %}Passwords{% endblock %}
+
+{% block page_content %}
+    <p>Thank you for not sending that password in the clear!</p>
+    <p>You can pass this password by telling the other party to enter your passphrase at:</p>
+    <a id="unclear-uri" href="{{ url_for('.unclear_views', passphrase_id=thing['stuff']) }}">{{ full_uri }}</span>
+{% endblock %}
