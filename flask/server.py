@@ -15,3 +15,7 @@ def plural(counter):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+#need some models http://pythonhosted.org/Flask-SQLAlchemy/index.html
+#http://lucumr.pocoo.org/2011/7/19/sqlachemy-and-you/

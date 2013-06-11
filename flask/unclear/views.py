@@ -24,3 +24,5 @@ class PassphraseView(MethodView):
 
 unclear_views.add_url_rule('/', view_func=PassphraseView.as_view('unclear_views'))
 unclear_views.add_url_rule('/<passphrase_id>', view_func=PassphraseView.as_view('unclear_views'))
+#Using pluggable views http://flask.pocoo.org/docs/views/
+# and blueprints http://flask.pocoo.org/docs/blueprints/
