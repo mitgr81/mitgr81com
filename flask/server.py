@@ -5,9 +5,11 @@ from unclear.views import unclear_views
 app = Flask(__name__)
 app.register_blueprint(unclear_views, url_prefix='/unclear')
 
+
 @app.route('/')
 def index():
     return "hello"
+
 
 @app.template_filter('plural')
 def plural(counter):
