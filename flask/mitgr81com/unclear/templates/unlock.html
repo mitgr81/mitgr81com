@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body_bottom %}
-<script src="{{ url_for('static', filename='js/aes.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/aes.js') }}"></script>
 <script type="text/javascript">
 var phrasebox = document.getElementsByName('passphrase')[0];
 
@@ -27,6 +27,7 @@ document.getElementsByName('unlock_phrase')[0].addEventListener('keyup', functio
             if (code == 200) {
                 phrasebox.value = decryptedString;
             }
+            document.getElementsByName('unlock_phrase')[0].value = '';
         });
         // create new xmlhttprequest (see MDN, like )
     } else {
