@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, request, url_for
+from flask import Blueprint, render_template, request
 from flask.views import MethodView
 
-from mitgr81com import db
 from .models import PassphraseHash
 
 unclear_views = Blueprint('unclear_views', __name__, template_folder='templates', static_folder='static')

@@ -10,6 +10,7 @@ from mitgr81com import db
 from mitgr81com import app
 from . import qaes
 
+
 class myModel(object):
 
     def delete(self):
@@ -54,7 +55,6 @@ class PassphraseHash(db.Model, myModel):
     @property
     def decry_passphrase(self):
         return qaes.decrypt(self.slug + app.config['SECRET_KEY'][:8], self.passphrase, binascii.a2b_base64(self.iv))
-
 
     def save(self, *args, **kwargs):
         if self.id is None:  # Doing an insert
