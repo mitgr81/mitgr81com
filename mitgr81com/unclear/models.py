@@ -39,9 +39,6 @@ class PassphraseHash(db.Model, myModel):
     max_access = db.Column(db.Integer, default=1)
     access_count = db.Column(db.Integer, default=0)
 
-    class Meta:
-        verbose_name_plural = "Passphrase Hashes"
-
     def __unicode__(self):
         return self.slug
 
