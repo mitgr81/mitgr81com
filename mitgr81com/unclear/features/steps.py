@@ -1,9 +1,9 @@
 from lettuce import *
-from lettuce.django import django_url
 from splinter.browser import Browser
 from nose.tools import assert_equals, assert_true, assert_not_equals
 
-urls = {'unclear': django_url('/unclear/')}
+# urls = {'unclear': django_url('/unclear/')}
+urls = {'unclear': 'http://localhost:5000/unclear/'}
 
 
 @before.all
