@@ -1,5 +1,6 @@
 from lettuce import *
 from splinter.browser import Browser
+from splinter.request_handler.status_code import HttpResponseError
 from nose.tools import assert_equals, assert_true, assert_not_equals
 
 # urls = {'unclear': django_url('/unclear/')}
@@ -27,7 +28,11 @@ def access_last_url(step):
 
 @step(u'I fail to browse to the last unclear page')
 def fail_to_access_last_url(step):
-    world.browser.visit(world.last_unclear_uri)
+    try:
+        world.browser.visit(world.last_unclear_uri)
+    except HttpResponseError as e:
+        assert_equals(404, e.status_code)
+        return
     assert_not_equals(200, world.browser.status_code.code)
 
 
