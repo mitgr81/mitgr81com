@@ -1,3 +1,4 @@
+import importlib
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -6,8 +7,20 @@ app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
-from .unclear.views import unclear_views
-app.register_blueprint(unclear_views, url_prefix='/unclear')
+# from .unclear.views import unclear_views
+# app.register_blueprint(unclear_views, url_prefix='/unclear')
+
+
+def tryregister(app, module):
+    try:
+        bar = importlib.import_module('.views', '{}.{}'.format(app.import_name, module))
+        app.register_blueprint(getattr(bar, 'unclear_views'), url_prefix='/{}'.format(module))
+        print('Registered {}.'.format(module))
+    except:
+        print('Module "{}" not found, did not register it.'.format(module))
+
+tryregister(app, 'unclear')
+tryregister(app, 'pants')
 
 
 @app.route('/')
