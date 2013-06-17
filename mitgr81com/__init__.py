@@ -7,19 +7,17 @@ app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
-# from .unclear.views import unclear_views
-# app.register_blueprint(unclear_views, url_prefix='/unclear')
 
-
-def tryregister(app, module):
+def tryregister(app, module, prefix=''):
     try:
-        bar = importlib.import_module('.views', '{}.{}'.format(app.import_name, module))
-        app.register_blueprint(getattr(bar, 'unclear_views'), url_prefix='/{}'.format(module))
-        print('Registered {}.'.format(module))
-    except:
-        print('Module "{}" not found, did not register it.'.format(module))
+        bar = importlib.import_module('{}.views'.format(module))
+        app.register_blueprint(getattr(bar, 'unclear_views'), url_prefix=prefix)
+        print('Registered "{}".'.format(module))
+    except Exception as e:
+        print('Module "{}" not found, did not register it: {}'.format(module, e))
 
-tryregister(app, 'unclear')
+tryregister(app, 'app2')
+tryregister(app, 'mitgr81com.unclear', prefix='/unclear')
 tryregister(app, 'pants')
 
 
