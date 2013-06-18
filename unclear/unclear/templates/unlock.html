@@ -29,6 +29,7 @@ document.getElementsByName('unlock_phrase')[0].addEventListener('keyup', functio
                 phrasebox.value = decryptedString;
             }
             document.getElementsByName('unlock_phrase')[0].value = '';
+            document.getElementsByName('passphrase')[0].focus();
         });
         // create new xmlhttprequest (see MDN, like )
     } else {
