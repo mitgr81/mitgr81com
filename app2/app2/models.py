@@ -6,7 +6,7 @@ import string
 from Crypto.Cipher import AES
 from Crypto import Random
 
-from mitgr81com import db
+from mitgr81com.database import db
 
 class myModel(object):
 
