@@ -35,3 +35,5 @@ mocksie.py
 #BDD Stuff
 ghostdriver.log
 
+#Mac Stuff
+.DS_Store
