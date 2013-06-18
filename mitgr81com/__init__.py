@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 def tryregister(app, module, prefix=''):
     try:
         bar = importlib.import_module('{}.views'.format(module))
-        app.register_blueprint(getattr(bar, 'unclear_views'), url_prefix=prefix)
+        app.register_blueprint(getattr(bar, 'views'), url_prefix=prefix)
         print('Registered "{}".'.format(module))
     except Exception as e:
         print('Module "{}" not found, did not register it: {}'.format(module, e))

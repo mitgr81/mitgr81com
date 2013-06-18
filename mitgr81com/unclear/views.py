@@ -3,7 +3,7 @@ from flask.views import MethodView
 
 from .models import PassphraseHash
 
-unclear_views = Blueprint('unclear_views', __name__, template_folder='templates', static_folder='static')
+views = Blueprint('views', __name__, template_folder='templates', static_folder='static')
 
 
 class PassphraseView(MethodView):
@@ -33,8 +33,8 @@ class PassphraseView(MethodView):
         #     return HttpResponse("okay!", content_type="application/json")
         # return HttpResponse("Nope", status=403)
 
-
-unclear_views.add_url_rule('/', view_func=PassphraseView.as_view('unclear_views'))
-unclear_views.add_url_rule('/<passphrase_id>', view_func=PassphraseView.as_view('unclear_views'))
+view_obj = PassphraseView.as_view('views')
+views.add_url_rule('/', view_func=view_obj)
+views.add_url_rule('/<passphrase_id>', view_func=view_obj)
 #Using pluggable views http://flask.pocoo.org/docs/views/
 # and blueprints http://flask.pocoo.org/docs/blueprints/
