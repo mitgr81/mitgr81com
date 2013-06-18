@@ -4,5 +4,5 @@
 {% block page_content %}
     <p>Thank you for not sending that password in the clear!</p>
     <p>You can pass this password by telling the other party to enter your passphrase at:</p>
-    <a id="unclear-uri" href="{{ url_for('.unclear_views', passphrase_id=passphrase.slug) }}">{{ url_for('.unclear_views', passphrase_id=passphrase.slug, _external=True) }}</span>
+    <a id="unclear-uri" href="{{ url_for('.views', passphrase_id=passphrase.slug) }}">{{ url_for('.views', passphrase_id=passphrase.slug, _external=True) }}</span>
 {% endblock %}

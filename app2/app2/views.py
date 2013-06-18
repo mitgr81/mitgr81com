@@ -3,7 +3,7 @@ from flask.views import MethodView
 
 from .models import TestModel
 
-unclear_views = Blueprint('app2views', __name__, template_folder='templates', static_folder='static')
+views = Blueprint('app2views', __name__, template_folder='templates', static_folder='static')
 
 
 class NuggetView(MethodView):
@@ -17,7 +17,8 @@ class NuggetView(MethodView):
             thingy = TestModel.query.get_or_404(passphrase_id)
             return unicode(thingy)
 
-unclear_views.add_url_rule('/images', view_func=NuggetView.as_view('unclear_views'))
-unclear_views.add_url_rule('/images/<passphrase_id>', view_func=NuggetView.as_view('unclear_views'))
+view_obj = NuggetView.as_view('views')
+views.add_url_rule('/images', view_func=view_obj)
+views.add_url_rule('/images/<passphrase_id>', view_func=view_obj)
 #Using pluggable views http://flask.pocoo.org/docs/views/
 # and blueprints http://flask.pocoo.org/docs/blueprints/

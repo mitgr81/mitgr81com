@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="app2",
+    name="unclear",
     packages=find_packages(),
-    namespace_packages=['app2'],
+    namespace_packages=['unclear'],
     )

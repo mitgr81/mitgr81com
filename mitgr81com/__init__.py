@@ -17,7 +17,7 @@ def tryregister(app, module, prefix=''):
         print('Module "{}" not found, did not register it: {}'.format(module, e))
 
 tryregister(app, 'app2')
-tryregister(app, 'mitgr81com.unclear', prefix='/unclear')
+tryregister(app, 'unclear', prefix='/unclear')
 tryregister(app, 'pants')
 
 
