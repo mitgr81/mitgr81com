@@ -3,8 +3,9 @@
 
 {% block page_content %}
     <span id="unclear-uri">This passphrase may be retrieved {{ object.remaining_unlocks }} more time{{ object.remaining_unlocks | plural}}.</span><br/>
-    <p><label for="id_unlock_phrase">Unlock Phrase:</label><input id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase"/></p>
-    <p><label for="id_passphrase">Passphrase:</label><input id="id_passphrase" type="password" name="passphrase" value="{{ object.decry_passphrase }}" readonly/><button id="copy-button">Copy</button></p>
+    <p><label class="control-label" for="id_unlock_phrase">Unlock Phrase:</label><input class="form-control" id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase"/></p>
+    <p><label class="control-label" for="id_passphrase">Passphrase:</label><input class="form-control" id="id_passphrase" type="password" name="passphrase" value="{{ object.decry_passphrase }}" readonly/>
+    <button class="btn btn-primary btn-lg pull-right" id="copy-button">Copy</button></p>
 
 {% endblock %}
 

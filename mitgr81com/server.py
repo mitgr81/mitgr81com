@@ -1,5 +1,5 @@
 import importlib
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,7 +18,7 @@ tryregister(app, 'unclear', prefix='/unclear')
 
 @app.route('/')
 def index():
-    return "hello"
+    return redirect(url_for('unclear_views.views'))  #for now, but lets get the blog going here!
 
 
 @app.template_filter('plural')

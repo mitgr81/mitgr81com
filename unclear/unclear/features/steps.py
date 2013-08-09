@@ -10,6 +10,7 @@ urls = {'unclear': 'http://localhost:5000/unclear/'}
 @before.all
 def set_browser():
     world.browser = Browser('chrome')
+    # world.browser = Browser('phantomjs')
 
 
 @after.all

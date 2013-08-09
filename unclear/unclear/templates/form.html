@@ -3,10 +3,10 @@
 
 {% block page_content %}
   <form action="/unclear/" method="post" id="unclear-form">
-    <p><label for="id_passphrase">Passphrase:</label> <input id="id_passphrase" maxlength="64" name="passphrase" type="password" placeholder="Passphrase" title="Passphrase to Pass" required/></p>
-    <p><label for="id_unlock_phrase">Unlock Phrase:</label><input id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase" title="Phrase you'll tell the other user" required/></p>
-    <p><label for="id_max_access">Max access:</label> <input id="id_max_access" name="max_access" type="number" min="1" value="1"  title="How many users you'll be passing this to" required/></p>
-    <input type="submit" name="Pass It" value="Pass It" />
+    <p><label class="control-label" for="id_passphrase">Passphrase:</label> <input class="form-control input-lg" id="id_passphrase" maxlength="64" name="passphrase" type="password" placeholder="Passphrase" title="Passphrase to Pass" required/></p>
+    <p><label class="control-label"  for="id_unlock_phrase">Unlock Phrase:</label><input class="form-control input-lg" id="id_unlock_phrase" type="password" name="unlock_phrase" placeholder="Unlock phrase" title="Phrase you'll tell the other user" required/></p>
+    <p><label class="control-label" for="id_max_access">Max access:</label> <input class="form-control" id="id_max_access" name="max_access" type="number" min="1" value="1"  title="How many users you'll be passing this to" required/></p>
+    <input class="btn btn-primary btn-lg pull-right" type="submit" name="Pass It" value="Pass It" />
   </form>
 {% endblock %}
 
