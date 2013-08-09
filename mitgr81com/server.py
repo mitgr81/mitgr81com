@@ -13,9 +13,7 @@ def tryregister(app, module, prefix=''):
     except Exception as e:
         print('Module "{}" not found, did not register it: {}'.format(module, e))
 
-tryregister(app, 'app2')
 tryregister(app, 'unclear', prefix='/unclear')
-tryregister(app, 'pants')
 
 
 @app.route('/')
