@@ -30,8 +30,8 @@ if __name__ == '__main__':
         # s = genstring(i)
         s = 'U2FsdGVkX19dKcS7eMVZyx0m1WL5gib1Blf7I3Le9s0Mw0Xztqouc3KpYaFrNoCm'
         key = genstring(32)
-        print 'The key is', key
-        print 'The string is', s
+        print('The key is', key)
+        print('The string is', s)
         cipher  = encrypt(key, s, 'here is an iv123')
-        print 'The encrypted string is', cipher
-        print 'This decrypted string is', decrypt(key, cipher, 'here is an iv123')
+        print('The encrypted string is', cipher)
+        print('This decrypted string is', decrypt(key, cipher, 'here is an iv123'))
